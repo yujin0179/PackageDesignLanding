@@ -129,8 +129,8 @@
 
     <!-- Mobile Hero -->
     <section class="px-6 pt-12 pb-16 flex flex-col items-center text-center">
-      <div class="mb-4 bg-primary-container text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase inline-block">Limited</div>
-      <h2 class="font-headline text-4xl font-bold text-maroon leading-tight tracking-tight mb-6">
+      <div class="mb-4 bg-primary-container text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase inline-block">DESIGN TO SHOOT — 무료 올인원 프로젝트</div>
+      <h2 class="font-headline text-4xl font-bold text-maroon leading-snug tracking-tight mb-6">
         YOUR BRAND <br/>
         <span class="serif-italic font-normal">Deserves Better</span> <br/>
         PACKAGING
@@ -304,7 +304,7 @@
     <footer class="bg-white border-t border-outline-variant/15 flex flex-col items-center gap-4 py-12 px-8 w-full">
       <h2 class="text-sm font-logo font-bold text-[#390007] tracking-tight">LEGATO DESIGN</h2>
       <a class="text-[10px] font-sans uppercase tracking-widest text-on-surface/40 hover:text-primary transition-colors" href="https://legatodesign.co.kr" target="_blank">legatodesign.co.kr</a>
-      <p class="text-[10px] font-sans uppercase tracking-widest text-on-surface/40 text-center">© 2024 LEGATO DESIGN. THE DIGITAL ATELIER.</p>
+      <p class="text-[10px] font-sans uppercase tracking-widest text-on-surface/40 text-center">© <span class="copyright-year">2024</span> LEGATO DESIGN. THE DIGITAL ATELIER.</p>
     </footer>
 
   </div><!-- /mobile -->
@@ -320,9 +320,9 @@
       <div class="grid md:grid-cols-2 gap-16 items-center relative z-10 w-full max-w-7xl mx-auto">
         <div class="space-y-8">
           <div class="inline-block bg-primary-container text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase">
-            LIMITED — 무료 브랜드 완성 프로젝트
+            DESIGN TO SHOOT — 무료 올인원 프로젝트
           </div>
-          <h1 class="text-5xl md:text-7xl font-headline font-bold leading-tight tracking-tighter text-primary">
+          <h1 class="text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-headline font-bold leading-snug tracking-tighter text-primary">
             YOUR BRAND<br/>
             Deserves Better<br/>
             <span class="italic text-primary-container font-normal">PACKAGING</span>
@@ -535,7 +535,7 @@
     <footer class="bg-surface-container-low flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full">
       <div class="mb-8 md:mb-0">
         <div class="text-xl font-logo font-bold text-[#65000C]">LEGATO DESIGN</div>
-        <p class="font-body text-xs tracking-widest uppercase mt-2 opacity-80">© 2024 LEGATO DESIGN. Crafted for Excellence.</p>
+        <p class="font-body text-xs tracking-widest uppercase mt-2 opacity-80">© <span class="copyright-year">2024</span> LEGATO DESIGN. THE DIGITAL ATELIER.</p>
       </div>
       <a class="font-body text-xs tracking-widest uppercase text-[#1a1a1a]/40 hover:text-[#65000C] transition-opacity opacity-80 hover:opacity-100" href="https://legatodesign.co.kr" target="_blank">legatodesign.co.kr</a>
     </footer>
@@ -547,6 +547,11 @@
 <script>
 // ── 페이지 로드 시 항상 최상단에서 시작 ──
 window.scrollTo(0, 0);
+
+// 저작권 연도 자동 업데이트
+document.querySelectorAll('.copyright-year').forEach(function(el) {
+  el.textContent = new Date().getFullYear();
+});
 
 // ── 무한 슬라이드 캐러셀 ──
 function initCarousel(trackId, dotsId, wrapperId) {
@@ -625,7 +630,32 @@ function initCarousel(trackId, dotsId, wrapperId) {
   startTimer();
 
   wrapper.addEventListener('mouseenter', stopTimer);
-  wrapper.addEventListener('mouseleave', startTimer);
+  wrapper.addEventListener('mouseleave', function() {
+    isDragging = false;
+    wrapper.style.cursor = '';
+    startTimer();
+  });
+
+  // 마우스 드래그
+  let dragStartX = 0, isDragging = false;
+  wrapper.style.cursor = 'grab';
+  wrapper.addEventListener('mousedown', function(e) {
+    if (e.target.closest('button')) return;
+    dragStartX = e.clientX;
+    isDragging = true;
+    wrapper.style.cursor = 'grabbing';
+    stopTimer();
+  });
+  window.addEventListener('mouseup', function(e) {
+    if (!isDragging) return;
+    const dx = e.clientX - dragStartX;
+    isDragging = false;
+    wrapper.style.cursor = 'grab';
+    if (Math.abs(dx) > 40) {
+      goTo(dx < 0 ? current + 1 : current - 1);
+    }
+    startTimer();
+  });
 
   // 터치 스와이프 (모바일)
   let touchStartX = 0, touchStartY = 0;
@@ -670,10 +700,28 @@ function initCarousel(trackId, dotsId, wrapperId) {
 
   wrapper.appendChild(prevBtn);
   wrapper.appendChild(nextBtn);
+
+  function reset() {
+    transitioning = false;
+    track.style.transition = 'none';
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    stopTimer();
+    startTimer();
+  }
+  function pause() { stopTimer(); }
+  return { reset, pause };
 }
 
-initCarousel('m-track', 'm-dots', 'm-carousel');
-initCarousel('d-track', 'd-dots', 'd-carousel');
+const mCarousel = initCarousel('m-track', 'm-dots', 'm-carousel');
+const dCarousel = initCarousel('d-track', 'd-dots', 'd-carousel');
+
+// resize 시 breakpoint 전환 → 숨겨진 캐러셀 pause, 보이는 캐러셀 reset
+const mql = window.matchMedia('(min-width: 768px)');
+function onBreakpoint(e) {
+  if (e.matches) { mCarousel.pause(); dCarousel.reset(); }
+  else           { dCarousel.pause(); mCarousel.reset(); }
+}
+mql.addEventListener('change', onBreakpoint);
 
 // ── 신청하기 버튼 → 스무스 스크롤 ──
 document.querySelectorAll('[data-scroll-to-form]').forEach(function(el) {
