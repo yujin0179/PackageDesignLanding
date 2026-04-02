@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+</script>
 <title>LEGATO DESIGN - 무료 패키지 디자인 신청</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:wght@600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -97,8 +101,8 @@
   <div class="flex items-center gap-2">
     <h1 class="text-xl font-logo font-bold text-[#390007] tracking-tight">LEGATO DESIGN</h1>
   </div>
-  <a href="#form" class="bg-primary-container text-white px-4 py-2 rounded-lg text-xs font-medium hover:scale-[1.02] transition-transform duration-300">
-    무료 신청하기
+  <a href="#" data-scroll-to-form class="bg-primary-container text-white px-4 py-2 rounded-lg text-xs font-medium hover:scale-[1.02] transition-transform duration-300">
+    지금 무료 신청
   </a>
 </header>
 
@@ -107,7 +111,7 @@
 ════════════════════════════════════════════ -->
 <nav class="hidden md:flex fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md justify-between items-center px-8 py-3 tonal-transition border-b border-outline-variant/20">
   <div class="text-2xl font-logo font-bold text-[#390007]">LEGATO DESIGN</div>
-  <a href="#form" class="bg-primary-container text-on-primary px-6 py-2 rounded-lg font-medium transition-transform duration-200 hover:scale-[1.02]">무료 신청하기</a>
+  <a href="#" data-scroll-to-form class="bg-primary-container text-on-primary px-6 py-2 rounded-lg font-medium transition-transform duration-200 hover:scale-[1.02]">지금 무료 신청</a>
 </nav>
 
 <main>
@@ -129,35 +133,28 @@
         포트폴리오 확장을 위해 5개의 브랜드를 선정해 무료 패키지 디자인과 목업을 제공합니다. 당신의 제품이 가진 가치를 시각적으로 완성하세요.
       </p>
 
-      <!-- 모바일 슬라이드 -->
-      <div class="w-full aspect-[4/5] rounded-xl overflow-hidden shadow-2xl relative mb-8" id="m-carousel">
-        <div id="m-track" style="display:flex; width:100%; height:100%; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
-          <!-- 슬라이드 1 -->
-          <div style="min-width:100%; height:100%;">
-            <img alt="포트폴리오 이미지 1" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_1"/>
+      <!-- 모바일 슬라이드: 외부 래퍼(overflow:visible) + 내부 클립 -->
+      <div class="w-full aspect-[4/5] relative mb-8" id="m-carousel">
+        <div class="absolute inset-0 rounded-xl overflow-hidden shadow-2xl">
+          <div id="m-track" style="display:flex; width:100%; height:100%; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
+            <div style="min-width:100%; height:100%;"><img alt="BYEORI 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/byeori.webp" width="900" height="1125" fetchpriority="high"/></div>
+            <div style="min-width:100%; height:100%;"><img alt="립스틱 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/lipstick2.webp" width="900" height="1125" loading="lazy"/></div>
+            <div style="min-width:100%; height:100%;"><img alt="크림 튜브 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/creamtube2.webp" width="900" height="1125" loading="lazy"/></div>
+            <div style="min-width:100%; height:100%;"><img alt="쿠션 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/cushion.webp" width="900" height="1125" loading="lazy"/></div>
+            <div style="min-width:100%; height:100%;"><img alt="자몽 스프레이 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/grapefruitSpray.webp" width="900" height="1125" loading="lazy"/></div>
+            <div style="min-width:100%; height:100%;"><img alt="립 제품 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/lippie2.webp" width="900" height="1125" loading="lazy"/></div>
+            <div style="min-width:100%; height:100%;"><img alt="LAB 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/lab.webp" width="900" height="1125" loading="lazy"/></div>
+            <div style="min-width:100%; height:100%;"><img alt="솔리스트 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/solist1.webp" width="900" height="1125" loading="lazy"/></div>
+            <div style="min-width:100%; height:100%;"><img alt="커피 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/coffee3.webp" width="900" height="1125" loading="lazy"/></div>
+            <div style="min-width:100%; height:100%;"><img alt="티 스토리 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/teaStorySmalll.webp" width="900" height="1125" loading="lazy"/></div>
           </div>
-          <!-- 슬라이드 2 -->
-          <div style="min-width:100%; height:100%;">
-            <img alt="포트폴리오 이미지 2" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_2"/>
-          </div>
-          <!-- 슬라이드 3 -->
-          <div style="min-width:100%; height:100%;">
-            <img alt="포트폴리오 이미지 3" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_3"/>
-          </div>
-          <!-- 슬라이드 4 -->
-          <div style="min-width:100%; height:100%;">
-            <img alt="포트폴리오 이미지 4" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_4"/>
-          </div>
-          <!-- 슬라이드 5 -->
-          <div style="min-width:100%; height:100%;">
-            <img alt="포트폴리오 이미지 5" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_5"/>
-          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
+          <div id="m-dots" style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10;"></div>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"></div>
-        <div id="m-dots" style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10;"></div>
+        <!-- 화살표는 overflow:hidden 바깥(여기)에 JS로 추가됨 -->
       </div>
 
-      <a href="#form" class="w-full max-w-xs bg-primary-container text-white py-5 rounded-xl font-bold text-lg shadow-xl shadow-primary-container/20 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center">
+      <a href="#" data-scroll-to-form class="w-full max-w-xs bg-primary-container text-white py-5 rounded-xl font-bold text-lg shadow-xl shadow-primary-container/20 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center">
         지금 무료 신청
       </a>
     </section>
@@ -329,7 +326,7 @@
             포트폴리오 확장을 위해 5개의 브랜드를 선정해 무료 패키지 디자인과 목업을 제공합니다. 당신의 제품이 가진 가치를 시각적으로 완성하세요.
           </p>
           <div class="flex flex-wrap gap-4 pt-4">
-            <a class="bg-primary-container text-on-primary px-8 py-4 rounded-lg flex items-center gap-2 hover:scale-105 transition-all duration-300 shadow-xl shadow-primary-container/10" href="#d-form">
+            <a class="bg-primary-container text-on-primary px-8 py-4 rounded-lg flex items-center gap-2 hover:scale-105 transition-all duration-300 shadow-xl shadow-primary-container/10" href="#" data-scroll-to-form>
               지금 무료 신청
               <span class="material-symbols-outlined">trending_flat</span>
             </a>
@@ -341,11 +338,16 @@
           <div class="absolute -inset-4 bg-gradient-to-tr from-primary-container/5 to-transparent rounded-3xl -z-10 group-hover:scale-105 transition-transform duration-500"></div>
           <div class="relative rounded-2xl shadow-2xl overflow-hidden" id="d-carousel" style="aspect-ratio:4/5;">
             <div id="d-track" style="display:flex;width:100%;height:100%;transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);">
-              <div style="min-width:100%;height:100%;"><img alt="포트폴리오 이미지 1" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_1"/></div>
-              <div style="min-width:100%;height:100%;"><img alt="포트폴리오 이미지 2" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_2"/></div>
-              <div style="min-width:100%;height:100%;"><img alt="포트폴리오 이미지 3" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_3"/></div>
-              <div style="min-width:100%;height:100%;"><img alt="포트폴리오 이미지 4" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_4"/></div>
-              <div style="min-width:100%;height:100%;"><img alt="포트폴리오 이미지 5" style="width:100%;height:100%;object-fit:cover;" src="YOUR_IMAGE_5"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="BYEORI 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/byeori.webp" width="900" height="1125" fetchpriority="high"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="립스틱 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/lipstick2.webp" width="900" height="1125" loading="lazy"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="크림 튜브 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/creamtube2.webp" width="900" height="1125" loading="lazy"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="쿠션 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/cushion.webp" width="900" height="1125" loading="lazy"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="자몽 스프레이 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/grapefruitSpray.webp" width="900" height="1125" loading="lazy"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="립 제품 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/lippie2.webp" width="900" height="1125" loading="lazy"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="LAB 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/lab.webp" width="900" height="1125" loading="lazy"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="솔리스트 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/solist1.webp" width="900" height="1125" loading="lazy"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="커피 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/coffee3.webp" width="900" height="1125" loading="lazy"/></div>
+              <div style="min-width:100%;height:100%;"><img alt="티 스토리 패키지 디자인" style="width:100%;height:100%;object-fit:cover;" src="images/optimized/teaStorySmalll.webp" width="900" height="1125" loading="lazy"/></div>
             </div>
             <div id="d-dots" style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10;"></div>
           </div>
@@ -538,44 +540,146 @@
 </main>
 
 <script>
-// ── 공통 슬라이드 초기화 함수 ──
+// ── 페이지 로드 시 항상 최상단에서 시작 ──
+window.scrollTo(0, 0);
+
+// ── 무한 슬라이드 캐러셀 ──
 function initCarousel(trackId, dotsId, wrapperId) {
-  const track  = document.getElementById(trackId);
-  const dotsEl = document.getElementById(dotsId);
-  if (!track || !dotsEl) return;
-  const slides = track.children;
-  let current  = 0;
+  const track   = document.getElementById(trackId);
+  const dotsEl  = document.getElementById(dotsId);
+  const wrapper = document.getElementById(wrapperId);
+  if (!track || !dotsEl || !wrapper) return;
+
+  const realSlides = Array.from(track.children);
+  const total      = realSlides.length;
+
+  // 무한루프: 앞뒤에 clone 삽입 → [cloneLast, ...real, cloneFirst]
+  const cloneFirst = realSlides[0].cloneNode(true);
+  const cloneLast  = realSlides[total - 1].cloneNode(true);
+  track.appendChild(cloneFirst);
+  track.insertBefore(cloneLast, realSlides[0]);
+
+  let current      = 1; // 실제 첫 슬라이드
+  let transitioning = false;
   let timer;
 
-  Array.from(slides).forEach((_, i) => {
+  track.style.transition = 'none';
+  track.style.transform  = 'translateX(-' + (current * 100) + '%)';
+
+  // 도트 생성
+  realSlides.forEach((_, i) => {
     const d = document.createElement('div');
     d.style.cssText = 'width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.3s;';
-    d.addEventListener('click', () => goTo(i));
+    d.addEventListener('click', () => { stopTimer(); goTo(i + 1); startTimer(); });
     dotsEl.appendChild(d);
   });
 
-  function goTo(n) {
-    current = (n + slides.length) % slides.length;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+  function updateDots() {
+    let idx = current - 1;
+    if (idx < 0)     idx = total - 1;
+    if (idx >= total) idx = 0;
     dotsEl.querySelectorAll('div').forEach((d, i) => {
-      d.style.background    = i === current ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.4)';
-      d.style.width         = i === current ? '18px' : '6px';
-      d.style.borderRadius  = '4px';
+      d.style.background   = i === idx ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.4)';
+      d.style.width        = i === idx ? '18px' : '6px';
+      d.style.borderRadius = '4px';
     });
   }
 
-  goTo(0);
-  timer = setInterval(() => goTo(current + 1), 3500);
-
-  const wrapper = document.getElementById(wrapperId);
-  if (wrapper) {
-    wrapper.addEventListener('mouseenter', () => clearInterval(timer));
-    wrapper.addEventListener('mouseleave', () => { timer = setInterval(() => goTo(current + 1), 3500); });
+  function goTo(n) {
+    if (transitioning) return;
+    transitioning = true;
+    current = n;
+    track.style.transition = 'transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)';
+    track.style.transform  = 'translateX(-' + (current * 100) + '%)';
+    updateDots();
   }
+
+  track.addEventListener('transitionend', () => {
+    transitioning = false;
+    if (current === total + 1) {   // cloneFirst 도달 → 실제 첫 슬라이드로
+      track.style.transition = 'none';
+      current = 1;
+      track.style.transform  = 'translateX(-' + (current * 100) + '%)';
+      updateDots();
+    } else if (current === 0) {    // cloneLast 도달 → 실제 마지막 슬라이드로
+      track.style.transition = 'none';
+      current = total;
+      track.style.transform  = 'translateX(-' + (current * 100) + '%)';
+      updateDots();
+    }
+  });
+
+  updateDots();
+
+  // setTimeout 자기 재호출 방식 — 중복 타이머 원천 차단
+  function stopTimer() { clearTimeout(timer); timer = null; }
+  function startTimer() {
+    stopTimer();
+    timer = setTimeout(function() { goTo(current + 1); startTimer(); }, 3500);
+  }
+  startTimer();
+
+  wrapper.addEventListener('mouseenter', stopTimer);
+  wrapper.addEventListener('mouseleave', startTimer);
+
+  // 터치 스와이프 (모바일)
+  let touchStartX = 0, touchStartY = 0;
+  wrapper.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  wrapper.addEventListener('touchend', function(e) {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      stopTimer();
+      goTo(dx < 0 ? current + 1 : current - 1);
+      startTimer();
+    }
+  }, { passive: true });
+
+  // 화살표 버튼
+  const arrowBase = 'position:absolute;top:50%;transform:translateY(-50%);z-index:20;' +
+    'background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);' +
+    'border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;' +
+    'display:flex;align-items:center;justify-content:center;' +
+    'box-shadow:0 2px 8px rgba(0,0,0,0.12);transition:opacity 0.2s,background 0.2s;';
+
+  const prevBtn = document.createElement('button');
+  prevBtn.type = 'button';
+  prevBtn.setAttribute('aria-label', '이전 슬라이드');
+  prevBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:18px;line-height:1;color:#390007;display:block;">chevron_left</span>';
+  prevBtn.style.cssText = arrowBase + 'left:12px;';
+  prevBtn.addEventListener('click', () => { stopTimer(); goTo(current - 1); startTimer(); });
+  prevBtn.addEventListener('mouseenter', () => { prevBtn.style.background = 'rgba(255,255,255,1)'; });
+  prevBtn.addEventListener('mouseleave', () => { prevBtn.style.background = 'rgba(255,255,255,0.85)'; });
+
+  const nextBtn = document.createElement('button');
+  nextBtn.type = 'button';
+  nextBtn.setAttribute('aria-label', '다음 슬라이드');
+  nextBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:18px;line-height:1;color:#390007;display:block;">chevron_right</span>';
+  nextBtn.style.cssText = arrowBase + 'right:12px;';
+  nextBtn.addEventListener('click', () => { stopTimer(); goTo(current + 1); startTimer(); });
+  nextBtn.addEventListener('mouseenter', () => { nextBtn.style.background = 'rgba(255,255,255,1)'; });
+  nextBtn.addEventListener('mouseleave', () => { nextBtn.style.background = 'rgba(255,255,255,0.85)'; });
+
+  wrapper.appendChild(prevBtn);
+  wrapper.appendChild(nextBtn);
 }
 
 initCarousel('m-track', 'm-dots', 'm-carousel');
 initCarousel('d-track', 'd-dots', 'd-carousel');
+
+// ── 신청하기 버튼 → 스무스 스크롤 ──
+document.querySelectorAll('[data-scroll-to-form]').forEach(function(el) {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    const isMobile = window.innerWidth < 768;
+    const targetId = isMobile ? 'form' : 'd-form';
+    const target   = document.getElementById(targetId);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
 
 // ── 공통 폼 제출 처리 함수 ──
 function initForm(formId, contentId, successId, btnId, btnTextId, btnIconId, spinnerId, checkboxName) {
@@ -606,22 +710,14 @@ function initForm(formId, contentId, successId, btnId, btnTextId, btnIconId, spi
         document.getElementById(contentId).style.display = 'none';
         document.getElementById(successId).style.display = 'flex';
       } else {
-        if (form.action.includes('xojpndlo')) {
-          alert('⚠️ Formspree 설정이 필요합니다.\n\n1. formspree.io 무료 가입\n2. New Form 생성 → 이메일: legatodesign@naver.com\n3. HTML의 xojpndlo를 발급받은 ID로 교체\n   예) https://formspree.io/f/xyzabcde');
-        } else {
-          alert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
-        }
+        alert('제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
         btn.disabled = false;
         btnText.textContent = '무료 신청서 제출';
         if (btnIcon) btnIcon.classList.remove('hidden');
         spinner.classList.add('hidden');
       }
     } catch(err) {
-      if (form.action.includes('xojpndlo')) {
-        alert('⚠️ Formspree 설정이 필요합니다.\n\n1. formspree.io 무료 가입\n2. New Form 생성 → 이메일: legatodesign@naver.com\n3. HTML의 xojpndlo를 발급받은 ID로 교체');
-      } else {
-        alert('네트워크 오류가 발생했습니다. 인터넷 연결을 확인해 주세요.');
-      }
+      alert('네트워크 오류가 발생했습니다. 인터넷 연결을 확인해 주세요.');
       btn.disabled = false;
       btnText.textContent = '무료 신청서 제출';
       if (btnIcon) btnIcon.classList.remove('hidden');
@@ -630,7 +726,7 @@ function initForm(formId, contentId, successId, btnId, btnTextId, btnIconId, spi
   });
 }
 
-initForm('m-apply-form', 'm-form-content', 'm-success-msg', 'm-submit-btn', 'm-btn-text', null,      'm-btn-spinner', '패키지_타입[]');
+initForm('m-apply-form', 'm-form-content', 'm-success-msg', 'm-submit-btn', 'm-btn-text', null,        'm-btn-spinner', '패키지_타입[]');
 initForm('d-apply-form', 'd-form-content', 'd-success-msg', 'd-submit-btn', 'd-btn-text', 'd-btn-icon', 'd-btn-spinner', '패키지_타입[]');
 </script>
 
