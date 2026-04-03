@@ -629,11 +629,9 @@ function initCarousel(trackId, dotsId, wrapperId) {
   }
   startTimer();
 
-  wrapper.addEventListener('mouseenter', stopTimer);
   wrapper.addEventListener('mouseleave', function() {
     isDragging = false;
-    wrapper.style.cursor = '';
-    startTimer();
+    wrapper.style.cursor = 'grab';
   });
 
   // 마우스 드래그
